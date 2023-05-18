@@ -1,5 +1,4 @@
 ```
-mvn clean install
 docker-compose up
 ```
 
@@ -10,4 +9,4 @@ Prometheus:
 http://localhost:9090
 
 Grafana:
-http://localhost:3030
+http://localhost:8888
