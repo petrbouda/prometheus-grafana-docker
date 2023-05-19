@@ -1,17 +1,34 @@
 version: '3'
 services:
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.47.1
+    container_name: cadvisor
+    ports:
+      - "8081:8080"
+    privileged: true
+    devices:
+      - /dev/kmsg:/dev/kmsg
+    volumes:
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /etc/machine-id:/etc/machine-id:ro
+      - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id:ro
   prometheus:
     image: "prom/prometheus"
-    network_mode: "host"
+    container_name: prometheus
+    ports:
+      - "9090:9090"
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-    container_name: prometheus
   grafana:
     image: "grafana/grafana:8.4.1"
-    network_mode: "host"
+    container_name: grafana
+    ports:
+      - "8888:3000"
     volumes:
       - ./grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/main.yaml
       - ./grafana/dashboards:/var/lib/grafana/dashboards
       - ./grafana/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
       - ./grafana/grafana.ini:/etc/grafana/grafana.ini
-    container_name: grafana

@@ -1,0 +1,942 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 1,
+  "iteration": 1684445141931,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 29,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "increase(container_cpu_cfs_throttled_periods_total{pod=~\"$pod\"}[$__rate_interval])",
+          "interval": "",
+          "legendFormat": "$pod",
+          "refId": "A"
+        }
+      ],
+      "title": "CPU Throttled Periods",
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.4.1",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(rate(container_cpu_cfs_throttled_seconds_total{pod=~\"$pod\"}[$__rate_interval]))by(pod)",
+          "interval": "",
+          "legendFormat": "{{pod}}",
+          "refId": "A"
+        }
+      ],
+      "title": "CPU Throttled Time",
+      "type": "timeseries"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 13,
+        "w": 12,
+        "x": 0,
+        "y": 7
+      },
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.4.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:286",
+          "alias": "/.*requests$/",
+          "color": "#FADE2A",
+          "fill": 0,
+          "lines": false,
+          "points": true
+        },
+        {
+          "$$hashKey": "object:287",
+          "alias": "/.*limits$/",
+          "color": "#F2495C",
+          "fill": 0,
+          "lines": true,
+          "linewidth": 1
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "kube_pod_labels{container!=\"POD\",namespace=\"$namespace\",label_app=\"$container\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "{{pod}}",
+          "refId": "A"
+        },
+        {
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "sum(rate(container_cpu_usage_seconds_total{pod=~\"$pod\"}[$__rate_interval]))by(pod)",
+          "interval": "",
+          "legendFormat": "{{pod}}",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "editorMode": "code",
+          "expr": "max(kube_pod_container_resource_requests{resource=\"cpu\",container=\"$container\",namespace=\"$namespace\"})",
+          "legendFormat": "$container container CPU requests",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "editorMode": "code",
+          "expr": "max(kube_pod_container_resource_limits{resource=\"cpu\",container=\"$container\",namespace=\"$namespace\"})",
+          "legendFormat": "$container container CPU limits",
+          "range": true,
+          "refId": "D"
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "CPU Container Usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:56",
+          "format": "short",
+          "logBase": 1,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:57",
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": true
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 4,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 13,
+        "w": 12,
+        "x": 12,
+        "y": 7
+      },
+      "hiddenSeries": false,
+      "id": 4,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.4.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeat": "pod",
+      "repeatDirection": "v",
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:139",
+          "alias": "/.*limit$/",
+          "fill": 0,
+          "lines": false,
+          "pointradius": 1,
+          "points": true
+        },
+        {
+          "$$hashKey": "object:140",
+          "alias": "/.*-saturation$/",
+          "yaxis": 2
+        },
+        {
+          "$$hashKey": "object:483",
+          "alias": "/.*usage$/",
+          "color": "#73BF69",
+          "fill": 0,
+          "lines": false,
+          "pointradius": 1,
+          "points": true
+        },
+        {
+          "$$hashKey": "object:519",
+          "alias": "/.*rss$/",
+          "dashes": true,
+          "lines": false
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "container_memory_rss{pod=~\"$pod\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{pod}} - rss",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "container_memory_max_usage_bytes{pod=~\"$pod\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "{{pod}} - max used",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "container_memory_working_set_bytes{pod=~\"$pod\"}",
+          "interval": "",
+          "legendFormat": "{{pod}} - wss",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "kube_pod_container_resource_limits{resource=\"memory\",pod=~\"$pod\"}",
+          "interval": "",
+          "legendFormat": "{{pod}} - limit",
+          "range": true,
+          "refId": "D"
+        },
+        {
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "container_memory_cache{pod=~\"$pod\"}",
+          "interval": "",
+          "legendFormat": "{{pod}} - cache",
+          "range": true,
+          "refId": "E"
+        },
+        {
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "container_memory_usage_bytes{pod=~\"$pod\"}",
+          "interval": "",
+          "legendFormat": "{{pod}} - usage",
+          "range": true,
+          "refId": "F"
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "Memory Container Usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "cumulative"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:159",
+          "format": "bytes",
+          "logBase": 1,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:160",
+          "format": "percentunit",
+          "logBase": 1,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 20
+      },
+      "hiddenSeries": false,
+      "id": 20,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.4.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeat": "pod",
+      "repeatDirection": "v",
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:262",
+          "alias": "/.*transmit.*/",
+          "transform": "negative-Y"
+        },
+        {
+          "$$hashKey": "object:263",
+          "alias": "/.*bytes$/",
+          "dashLength": 1,
+          "dashes": true,
+          "lines": false,
+          "pointradius": 1,
+          "spaceLength": 1,
+          "yaxis": 2
+        },
+        {
+          "$$hashKey": "object:264"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "(rate(container_network_receive_packets_total{pod=~\"$pod\"}[$__rate_interval]))",
+          "interval": "",
+          "legendFormat": "{{pod}}-receive",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "(rate(container_network_transmit_packets_total{pod=\"$pod\"}[$__rate_interval]))",
+          "interval": "",
+          "legendFormat": "{{pod}}-transmit",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "(rate(container_network_receive_bytes_total{pod=\"$pod\"}[$__rate_interval])) * 8",
+          "interval": "",
+          "legendFormat": "{{pod}}-receive bytes",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "(rate(container_network_transmit_bytes_total{pod=\"$pod\"}[$__rate_interval])) * 8",
+          "interval": "",
+          "legendFormat": "{{pod}}-transmit bytes",
+          "range": true,
+          "refId": "D"
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "Network Traffic",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:291",
+          "format": "pps",
+          "label": "transmit（-）/receive（+）",
+          "logBase": 1,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:292",
+          "format": "bps",
+          "label": "transmit（-）/receive（+）",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": true
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 12,
+        "y": 20
+      },
+      "hiddenSeries": false,
+      "id": 27,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": true,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.4.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatDirection": "v",
+      "seriesOverrides": [
+        {
+          "alias": "/.*transmit$/",
+          "transform": "negative-Y"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "(rate(container_network_receive_packets_dropped_total{pod!~\"|sync.*|prometheus.*|ovs.*|sdn.*|ipf.*\",namespace=\"$namespace\",interface=~\"eth.*\"}[$__rate_interval]))",
+          "interval": "",
+          "legendFormat": "{{pod}}-dropped-receive ({{interface}})",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "(rate(container_network_transmit_packets_dropped_total{pod!~\"|sync.*|prometheus.*|ovs.*|sdn.*|ipf.*\",namespace=\"$namespace\",interface=~\"eth.*\"}[1m]))",
+          "interval": "",
+          "legendFormat": "{{pod}}-dropped-transmit ({{interface}})",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "(irate(container_network_receive_errors_total{pod!~\"|sync.*|prometheus.*|ovs.*|sdn.*|ipf.*\",namespace=\"$namespace\",interface=~\"eth.*\"}[$__rate_interval]))",
+          "interval": "",
+          "legendFormat": "{{pod}}-errors-receive ({{interface}})",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "(rate(container_network_transmit_errors_total{pod!~\"|sync.*|prometheus.*|ovs.*|sdn.*|ipf.*\",namespace=\"$namespace\",interface=~\"eth.*\"}[$__rate_interval]))",
+          "interval": "",
+          "legendFormat": "{{pod}}-errors-transmit ({{interface}})",
+          "refId": "D"
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "container network dropped/errors",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:314",
+          "format": "pps",
+          "label": "transmit（-）/receive（+）",
+          "logBase": 1,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:315",
+          "format": "pps",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": true
+      }
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 18,
+        "y": 20
+      },
+      "id": 6,
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.4.1",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "sum(container_memory_rss{pod=~\"$pod\"})",
+          "interval": "",
+          "legendFormat": "$container memory allocated",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "editorMode": "code",
+          "expr": "sum(kube_pod_container_resource_limits{resource=\"memory\",namespace=~\"$namespace\",container=\"$container\"})",
+          "legendFormat": "$container max memory allocation",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "memory allocation totals",
+      "type": "stat"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 35,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "local",
+          "value": "local"
+        },
+        "definition": "label_values(container_cpu_usage_seconds_total{namespace=~\".*\"}, namespace)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "namespace",
+        "multi": false,
+        "name": "namespace",
+        "options": [],
+        "query": {
+          "query": "label_values(container_cpu_usage_seconds_total{namespace=~\".*\"}, namespace)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "local",
+          "value": "local"
+        },
+        "definition": "label_values(container_cpu_usage_seconds_total{namespace=\"$namespace\"}, container)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "container",
+        "multi": false,
+        "name": "container",
+        "options": [],
+        "query": {
+          "query": "label_values(container_cpu_usage_seconds_total{namespace=\"$namespace\"}, container)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "prometheus",
+          "value": "prometheus"
+        },
+        "definition": "label_values(container_cpu_usage_seconds_total{namespace=\"$namespace\", container=\"$container\"}, pod)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "pod",
+        "multi": false,
+        "name": "pod",
+        "options": [],
+        "query": {
+          "query": "label_values(container_cpu_usage_seconds_total{namespace=\"$namespace\", container=\"$container\"}, pod)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "Container Metrics",
+  "uid": "IPZn_fuWk2",
+  "version": 1,
+  "weekStart": ""
+}
